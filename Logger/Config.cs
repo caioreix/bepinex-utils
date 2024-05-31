@@ -18,6 +18,8 @@ public class Config {
         Log.Start($"Using \"{tempLogFile}\" to save logs.");
     }
 
+    public static void TestSetup() { }
+
     internal static void logFile(object data, string level, string prefix = "") {
         if (Settings.ENV.LogOnTempFile) {
             using (StreamWriter w = File.AppendText(tempLogFile)) {

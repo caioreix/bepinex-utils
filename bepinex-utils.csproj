@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>library</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>BepInEx-Utils</RootNamespace>
+    <PackageId>BepInEx-Utils</PackageId>
+    <Authors>caioreix</Authors>
+    <BepInExVersion>6.0.0-be.691</BepInExVersion>
+    <Version>$(BepInExVersion)-v.1</Version>
+    <RepositoryUrl>https://github.com/caioreix/BepInEx-Utils</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Nullable>disable</Nullable>
+    <TransformedVersion></TransformedVersion>
+  </PropertyGroup>
+
+  <Target Name="Copy pack to dist" AfterTargets="Pack" >
+    <Copy SourceFiles="$(OutDir)..\$(PackageId).$(Version).nupkg" DestinationFolder=".\dist" />
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Unity.IL2CPP" Version="$(BepInExVersion)" IncludeAssets="compile" />
+    <PackageReference Include="BepInEx.Core" Version="$(BepInExVersion)" IncludeAssets="compile" />
+  </ItemGroup>
+</Project>
