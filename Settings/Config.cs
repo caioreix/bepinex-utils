@@ -12,6 +12,19 @@ public class Config {
     internal static ConfigFile cfg;
     private static List<Action> configActions = new List<Action>();
 
+    public static ConfigEntry<T> Bind<T>(string section, string key, T defaultValue, string description) {
+        return Config.cfg.Bind(
+                section,
+                key,
+                defaultValue,
+                description
+            );
+    }
+
+    public static void Save() {
+        Config.cfg.Save();
+    }
+
     public static void Setup(string pluginGUID, ConfigFile config, params Action[] actions) {
         PluginGUID = pluginGUID;
         Config.cfg = config;
