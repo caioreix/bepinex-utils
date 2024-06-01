@@ -7,7 +7,7 @@
     <PackageId>BepInEx-Utils</PackageId>
     <Authors>caioreix</Authors>
     <BepInExVersion>6.0.0-be.691</BepInExVersion>
-    <Version>$(BepInExVersion)-v.1</Version>
+    <Version>$(BepInExVersion)-v.2</Version>
     <RepositoryUrl>https://github.com/caioreix/bepinex-utils</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Nullable>disable</Nullable>
