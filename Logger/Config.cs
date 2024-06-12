@@ -10,10 +10,15 @@ public class Config {
 
 
     // Setup the logs start configs.
-    public static void Setup(ManualLogSource logger, string worldType) {
+    public static void Setup(ManualLogSource logger, string worldType = "") {
         Config.logger = logger;
 
-        tempLogFile = $"{Settings.Config.PluginFolderPath}\\{Settings.Config.PluginGUID}-{worldType}.txt";
+        var suffix = "";
+        if (worldType != "") {
+            suffix = $"-{worldType}";
+        }
+
+        tempLogFile = $"{Settings.Config.PluginFolderPath}\\{Settings.Config.PluginGUID}{suffix}.txt";
 
         Log.Start($"Using \"{tempLogFile}\" to save logs.");
     }

@@ -13,7 +13,7 @@ public class Config {
     private static List<Action> configActions = new List<Action>();
 
     public static ConfigEntry<T> Bind<T>(string section, string key, T defaultValue, string description) {
-        return Config.cfg.Bind(
+        return cfg.Bind(
                 section,
                 key,
                 defaultValue,
@@ -22,19 +22,19 @@ public class Config {
     }
 
     public static void Save() {
-        Config.cfg.Save();
+        cfg.Save();
     }
 
-    public static void Setup(string pluginGUID, ConfigFile config, params Action[] actions) {
+    public static void Setup(string pluginGUID, ConfigFile config, int skipCaller = 4, params Action[] actions) {
         PluginGUID = pluginGUID;
-        Config.cfg = config;
+        cfg = config;
 
         PluginFolderPath = $"{BepInEx.Paths.ConfigPath}\\{PluginGUID}";
         if (!Directory.Exists(PluginFolderPath)) {
             Directory.CreateDirectory(PluginFolderPath);
         }
 
-        ENV.Debug.Setup();
+        ENV.Debug.Setup(skipCaller);
         AddConfigActions(actions);
     }
 
