@@ -72,13 +72,13 @@ jobs:
       - uses: caioreix/get-net-sdk-project-versions-action@v1
         id: get-version
         with:
-          proj-path: vrising-utils.csproj
+          proj-path: bepinex-utils.csproj
       - name: Setup Source
         run: make source
       - name: Build
         run: make build-release
       - name: Publish
-        run: dotnet nuget push "./dist/BepInEx-Utils.VRising.${{steps.get-version.outputs.version}}.nupkg" --api-key ${{ secrets.NUGET_TOKEN }} --source "https://api.nuget.org/v3/index.json"
+        run: dotnet nuget push "./dist/BepInEx-Utils.${{steps.get-version.outputs.version}}.nupkg" --api-key ${{ secrets.NUGET_TOKEN }} --source "https://api.nuget.org/v3/index.json"
 
   tag:
     name: Tag
