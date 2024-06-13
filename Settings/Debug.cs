@@ -12,15 +12,15 @@ public static class ENV {
         private static ConfigEntry<bool> DebugLogOnTempFile;
         private static ConfigEntry<bool> DebugEnableTraceLogs;
 
-        public static void Setup() {
+        public static void Setup(int skipCaller) {
             Config.AddConfigActions(
-                () => load()
+                () => load(skipCaller)
             );
         }
 
         // Load the plugin debug variables.
-        private static void load() {
-            if (enableDebugConfigs()) {
+        private static void load(int skipCaller) {
+            if (enableDebugConfigs(skipCaller)) {
                 DebugLogOnTempFile = Config.cfg.Bind(
                     debugSection,
                     "LogOnTempFile",
@@ -51,8 +51,8 @@ public static class ENV {
             Config.cfg.Save();
         }
 
-        private static bool enableDebugConfigs() {
-            var assemblyConfigurationAttribute = typeof(Debug).Assembly.GetCustomAttribute<AssemblyConfigurationAttribute>();
+        private static bool enableDebugConfigs(int skipCaller) {
+            var assemblyConfigurationAttribute = new System.Diagnostics.StackTrace().GetFrame(skipCaller).GetMethod().DeclaringType.Assembly.GetCustomAttribute<AssemblyConfigurationAttribute>();
             var buildConfigurationName = assemblyConfigurationAttribute?.Configuration;
             return buildConfigurationName != "Release";
         }
