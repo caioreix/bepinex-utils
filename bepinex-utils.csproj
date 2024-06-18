@@ -11,6 +11,9 @@
     <RepositoryUrl>https://github.com/caioreix/bepinex-utils</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Nullable>disable</Nullable>
+
+    <GenerateAssemblyInfo Condition=" '$(Configuration)' == 'Debug'">false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute Condition=" '$(Configuration)' == 'Debug'">false</GenerateTargetFrameworkAttribute>
   </PropertyGroup>
 
   <Target Name="Copy pack to dist" AfterTargets="Pack" >
