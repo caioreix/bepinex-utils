@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Concurrent;
 
-
 namespace Utils.Database;
 
 public static class Cache {

@@ -1,5 +1,4 @@
 using System.Reflection;
-using BepInEx.Configuration;
 
 namespace Utils.Settings;
 
@@ -9,8 +8,8 @@ public static class ENV {
 
     public class Debug {
         private static string debugSection = "🪲Debug";
-        private static ConfigEntry<bool> DebugLogOnTempFile;
-        private static ConfigEntry<bool> DebugEnableTraceLogs;
+        private static ConfigElement<bool> DebugLogOnTempFile;
+        private static ConfigElement<bool> DebugEnableTraceLogs;
 
         public static void Setup(int skipCaller) {
             Config.AddConfigActions(
@@ -21,14 +20,14 @@ public static class ENV {
         // Load the plugin debug variables.
         private static void load(int skipCaller) {
             if (enableDebugConfigs(skipCaller)) {
-                DebugLogOnTempFile = Config.cfg.Bind(
+                DebugLogOnTempFile = Config.Bind(
                     debugSection,
                     "LogOnTempFile",
                     false,
                     "Enabled, will log every plugin log on a temp file"
                 );
 
-                DebugEnableTraceLogs = Config.cfg.Bind(
+                DebugEnableTraceLogs = Config.Bind(
                     debugSection,
                     "EnableTraceLogs",
                     false,

@@ -12,13 +12,15 @@ public class Config {
     internal static ConfigFile cfg;
     private static List<Action> configActions = new List<Action>();
 
-    public static ConfigEntry<T> Bind<T>(string section, string key, T defaultValue, string description) {
-        return cfg.Bind(
+    public static ConfigElement<T> Bind<T>(string section, string key, T defaultValue, string description) {
+        var config = cfg.Bind(
                 section,
                 key,
                 defaultValue,
                 description
             );
+
+        return new(config, section, key, defaultValue, description);
     }
 
     public static void Save() {
