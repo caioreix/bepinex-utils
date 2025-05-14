@@ -32,4 +32,9 @@ public static class Cache {
     public static bool RemoveKey(string key) {
         return Cached.TryRemove(key, out bool _);
     }
+
+    public static void Clear() {
+        Cached.Clear();
+        LastUpdate.Clear();
+    }
 }
