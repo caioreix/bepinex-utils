@@ -27,6 +27,10 @@ public class Config {
         cfg.Save();
     }
 
+    public static void Reload() {
+        cfg.Reload();
+    }
+
     public static void Setup(string pluginGUID, ConfigFile config, int skipCaller = 4, params Action[] actions) {
         PluginGUID = pluginGUID;
         cfg = config;
