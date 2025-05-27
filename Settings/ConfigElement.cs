@@ -4,36 +4,33 @@ using BepInEx.Configuration;
 
 namespace Utils.Settings;
 
-public class ConfigElement<T> {
-    public string Section { get; }
-    public string Key { get; }
+public class ConfigElement<T>(ConfigEntry<T> original, string section, string key, T defaultValue, string description) {
+    public string Section { get; } = section;
+    public string Key { get; } = key;
 
-    public string Description { get; }
+    public string Description { get; } = description;
 
     public Type ElementType => typeof(T);
 
-    public List<Action<T>> OnValueChanged = new List<Action<T>>();
+    public List<Action<T>> OnValueChanged = [];
 
-    private ConfigEntry<T> OriginalConfig;
+    public readonly ConfigEntry<T> OriginalConfig = original;
+
+    public T DefaultValue { get; } = defaultValue;
 
     public T Value {
         get => GetValue();
         set => SetValue(value);
     }
 
-    public T DefaultValue { get; }
+    public T ValueFromConfig() {
+        Config.Reload();
 
+        return Value;
+    }
 
     private T GetValue() {
         return OriginalConfig.Value;
-    }
-
-    public ConfigElement(ConfigEntry<T> original, string section, string key, T defaultValue, string description) {
-        OriginalConfig = original;
-        Section = section;
-        Key = key;
-        DefaultValue = defaultValue;
-        Description = description;
     }
 
     private void SetValue(T value) {

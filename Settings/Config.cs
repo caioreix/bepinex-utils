@@ -10,7 +10,7 @@ public class Config {
     public static string PluginFolderPath;
 
     internal static ConfigFile cfg;
-    private static List<Action> configActions = new List<Action>();
+    private static readonly List<Action> configActions = [];
 
     public static ConfigElement<T> Bind<T>(string section, string key, T defaultValue, string description) {
         var config = cfg.Bind(
