@@ -10,6 +10,7 @@
     <Version>$(BepInExVersion)-v.5</Version>
     <RepositoryUrl>https://github.com/caioreix/bepinex-utils</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
 
     <GenerateAssemblyInfo Condition=" '$(Configuration)' == 'Debug'">false</GenerateAssemblyInfo>
