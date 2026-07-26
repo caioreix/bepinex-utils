@@ -13,13 +13,14 @@ public static class Cache {
             return true;
         }
 
-        LastUpdate.AddOrUpdate(key, now, (_, _) => now);
+        LastUpdate[key] = now;
         return false;
     }
 
     public static bool Key(string key, bool cache = true) {
         if (!cache) { return false; }
-        return Cached.AddOrUpdate(key, true, (_, _) => true);
+        Cached[key] = true;
+        return true;
     }
 
     public static bool Exists(string key) {

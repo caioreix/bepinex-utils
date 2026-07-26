@@ -111,7 +111,7 @@ public class Log {
         var currentTimestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
         if (!timedLog.TryGetValue(id, out var timestamp)) {
             var newTimestamp = DateTimeOffset.Now.AddMilliseconds(ms).ToUnixTimeMilliseconds();
-            timedLog.AddOrUpdate(id, newTimestamp, (key, oldValue) => newTimestamp);
+            timedLog[id] = newTimestamp;
             return true;
         }
 
